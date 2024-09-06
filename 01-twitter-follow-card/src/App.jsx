@@ -1,29 +1,41 @@
-import { useState } from "react";
 import "./App.css";
+import { TwitterFollowCard } from "./TwitterFollowCard.jsx";
 
-function App() {
-  const [count, setCount] = useState(0);
+const users = [
+  {
+    userName: "midudev",
+    name: "Miguel Ángel Durán",
+    isFollowing: true,
+  },
+  {
+    userName: "pheralb",
+    name: "Pablo H.",
+    isFollowing: false,
+  },
+  {
+    userName: "PacoHdezs",
+    name: "Paco Hdez",
+    isFollowing: true,
+  },
+  {
+    userName: "TMChein",
+    name: "Tomas",
+    isFollowing: false,
+  },
+];
 
+export function App() {
   return (
-    <>
-      <article className="tw-followCard">
-        <header className="tw-followCard-header">
-          <img
-            className="tw-followCard-avatar"
-            src="https://unavatar.io/twitter/kikobeats"
-            alt="Avatar de Kikobeats"
-          />
-          <div className="tw-followCard-info">
-            <strong>Kiko Bejarano</strong>
-            <span>@kikobeats</span>
-          </div>
-        </header>
-        <aside>
-          <button className="tw-followCard-button">Seguir</button>
-        </aside>
-      </article>
-    </>
+    <section className="App">
+      {users.map(({ userName, name, isFollowing }) => (
+        <TwitterFollowCard
+          key={userName}
+          userName={userName}
+          initialIsFollowing={isFollowing}
+        >
+          {name}
+        </TwitterFollowCard>
+      ))}
+    </section>
   );
 }
-
-export default App;
